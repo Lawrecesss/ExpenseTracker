@@ -71,6 +71,8 @@ const App = () => {
                   onDescriptionChange={setDescription}
                 />
                 <Category
+                  className="w-[300px] justify-between h-30 rounded-xl bg-white hover:bg-slate-200 "
+                  defaultLabel="Select Category"
                   open={open}
                   setOpen={setOpen}
                   value={value}
@@ -100,13 +102,8 @@ const App = () => {
               selectedDate={selectedDay}
               selectedData={selectedData}
               setSelectedData={setSelectedData}
+              handleDelete={handleDelete}
             />
-            <button
-              className="bg-white h-10 w-20 mt-5 rounded-xl border border-black"
-              onClick={handleDelete}
-            >
-              Delete
-            </button>
           </div>
         </div>
       </div>

@@ -15,6 +15,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 interface Props {
+  className: string;
+  defaultLabel: string;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   value: string;
@@ -42,7 +44,14 @@ const categories = [
     label: "Shopping",
   },
 ];
-const Category = ({ open, setOpen, value, setValue }: Props) => {
+const Category = ({
+  open,
+  setOpen,
+  value,
+  setValue,
+  defaultLabel,
+  className,
+}: Props) => {
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -50,18 +59,18 @@ const Category = ({ open, setOpen, value, setValue }: Props) => {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[300px] justify-between h-30 rounded-xl bg-white hover:bg-slate-200"
+          className={className}
         >
           {value
             ? categories.find((category) => category.value === value)?.label
-            : "Select Category..."}
+            : defaultLabel}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[300px] p-0 rounded-xl bg-slate-50">
+      <PopoverContent className="p-0 rounded-xl bg-slate-50 w-[300px]">
         <Command>
           <CommandInput placeholder="Search Category..." />
-          <CommandEmpty>No framework found.</CommandEmpty>
+          <CommandEmpty>No category found.</CommandEmpty>
           <CommandGroup>
             {categories.map((category) => (
               <CommandItem

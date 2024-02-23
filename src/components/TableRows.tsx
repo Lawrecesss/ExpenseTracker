@@ -44,10 +44,10 @@ const TableRows = ({
           onCheckedChange={() => setIsChecked(!isChecked)}
         />
       </TableCell>
-      <TableCell className="font-medium">{date}</TableCell>
-      <TableCell>{description}</TableCell>
-      <TableCell>{category}</TableCell>
-      <TableCell className="text-right">{"$" + amount}</TableCell>
+      <TableCell className="font-medium w-[150px]">{date}</TableCell>
+      <TableCell className="w-[200px]">{description}</TableCell>
+      <TableCell className="w-[200px] pl-9">{category}</TableCell>
+      <TableCell className="text-right">{"$" + amount + ".00"}</TableCell>
     </TableRow>
   );
 };
