@@ -16,13 +16,13 @@ const Input = ({
     <>
       <input
         id="amount"
-        className="h-30 w-[300px] p-3 border rounded-xl border-black mb-1 bg-white"
+        className="w-[300px] p-3 border rounded-xl border-black mb-1 bg-white"
         type="number"
         placeholder="Amount"
         value={amount}
         onChange={(v) => onAmountChange(parseInt(v.target.value))}
       />
-      <textarea
+      <input
         id="description"
         className=" w-[300px] p-3 border rounded-xl border-black mb-1 bg-white"
         placeholder="Description"
