@@ -14,6 +14,7 @@ const App = () => {
   const [value, setValue] = useState("");
   const [data, setData] = useState<
     {
+      id: Date;
       date: string;
       description: string;
       category: string;
@@ -21,12 +22,14 @@ const App = () => {
     }[]
   >([
     {
+      id: today,
       date: today.toDateString(),
       description: description,
       category: value,
       amount: amount,
     },
   ]);
+  const [selectedData, setSelectedData] = useState<Date[]>([]);
 
   const handleClear = () => {
     setAmount(""), setDescription(""), setOpen(false), setValue("");
@@ -36,6 +39,7 @@ const App = () => {
       setData([
         ...data,
         {
+          id: today,
           date: today.toDateString(),
           description: description,
           category: value,
@@ -43,16 +47,22 @@ const App = () => {
         },
       ]);
       handleClear();
-      console.log(data);
     }
+  };
+  const handleDelete = () => {
+    setData(
+      data.filter((d) => {
+        return !selectedData.includes(d.id);
+      })
+    );
   };
   return (
     <ScrollArea>
       <div className="flex justify-center p-10 bg-blue-500 h-screen">
         <div className="flex  px-10  w-[800px] rounded-xl bg-blue-300 h-auto">
-          <div className="flex flex-col items-center pb-10">
+          <div className="flex flex-col items-center pb-5">
             <h1 className="font-bold text-xl m-10">Expense Tracker</h1>
-            <div className="flex flex-row px-10 pb-10">
+            <div className="flex flex-row px-10 pb-5">
               <div>
                 <Input
                   amount={amount}
@@ -85,7 +95,18 @@ const App = () => {
               </div>
               <CalendarDemo date={selectedDay} onSelect={setSelectedDay} />
             </div>
-            <DataTable data={data} selectedDate={selectedDay} />
+            <DataTable
+              data={data}
+              selectedDate={selectedDay}
+              selectedData={selectedData}
+              setSelectedData={setSelectedData}
+            />
+            <button
+              className="bg-white h-10 w-20 mt-5 rounded-xl border border-black"
+              onClick={handleDelete}
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>
